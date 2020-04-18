@@ -13,23 +13,24 @@ type SiteData struct {
 	Description string   `json:"description"`
 	Images      []string `json:"images"`
 	Url         string   `json:"url"`
+	Error       string   `json:"error"`
 }
 
 func getSiteData(url string) (*SiteData, error) {
+
 	data := new(SiteData)
 
 	s, err := goscraper.Scrape(url, 5)
 	if err != nil {
-		return nil, err
+		data.Error = err.Error()
+		return data, err
 	}
 
-	data = &SiteData{
-		Icon:        s.Preview.Icon,
-		Name:        s.Preview.Name,
-		Title:       s.Preview.Title,
-		Description: s.Preview.Description,
-		Url:         s.Preview.Link,
-	}
+	data.Icon = s.Preview.Icon
+	data.Name = s.Preview.Name
+	data.Title = s.Preview.Title
+	data.Description = s.Preview.Description
+	data.Url = s.Preview.Link
 
 	if len(s.Preview.Images) > 0 {
 		data.Images = s.Preview.Images

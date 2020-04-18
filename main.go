@@ -85,7 +85,7 @@ func getSiteDataHandel(w http.ResponseWriter, r *http.Request) {
 
 	jsondata, err := res.toJSON()
 	if err != nil {
-		fmt.Printf("ToJson: %v", err)
+		fmt.Fprintf(w, "ToJson: %v", err)
 	}
 
 	fmt.Fprint(w, jsondata)

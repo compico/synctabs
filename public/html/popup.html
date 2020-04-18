@@ -1,32 +1,32 @@
 {{ define "popup" }}
 <div class="ts modals inverted dimmer">
-  <dialog id="addTabsForm" class="ts closable tiny modal">
-    <div class="ts segments">
-      <div class="ts segment" style="padding-bottom: 0px;padding-top: 0px;padding-right: 0px;">
-        <div class="ts icon secondary menu">
-          <h3 class="ts info header" style="margin-bottom: 0px;">Adding Tab</h3>
-          <a onclick="ts('#addTabsForm').modal('hide')" class="bordered right item"><i
-              class="remove primary icon"></i></a>
-        </div>
-      </div>
-      <div class="ts segment">
-        <form action="/addtab" method="post" class="ts form">
-          <div class="field basic">
-            <div class="ts labeled input" style="display: flex;">
-              <div class="ts basic label">
-                URL:
-              </div>
-              <div class="ts left pointing label" style="border-radius: 0px;">https://</div>
-              <input id="inputurlform" type="text" placeholder="e.g. https://www.google.com/"
-                oninput="bindval(this.value)" style="border-bottom-left-radius: 0px;border-top-left-radius: 0px;">
-            </div>
-          </div>
-          <button class="ts positive button">
-            <i class="checkmark icon"></i>Add
-          </button>
-        </form>
-      </div>
+ <dialog id="addTabsForm" class="ts closable tiny modal">
+  <div class="ts segments">
+   <div class="ts segment" style="padding-bottom: 0px;padding-top: 0px;padding-right: 0px;">
+    <div class="ts icon secondary menu">
+     <h3 class="ts info header" style="margin-bottom: 0px;">Adding Tab</h3>
+     <a onclick="ts('#addTabsForm').modal('hide')" class="bordered right item"><i class="remove primary icon"></i></a>
     </div>
-  </dialog>
+   </div>
+   <div class="ts segment">
+    <form action="/addtab" method="post" class="ts form">
+     <div class="field basic">
+      <div class="ts basic negative pointing below label" id="error-url-popup" hidden="true"></div>
+      <div class="ts labeled action input" id="input-url-popup" style="display: flex;">
+       <div class="ts basic label" id="label-url-popup">URL:</div>
+       <input id="inputurlform" type="text" placeholder="e.g. http://example.com/" oninput="bindval(this.value)"
+        style="border-bottom-left-radius: 0px;border-top-left-radius: 0px;">
+       <button class="ts button">Add</button>
+      </div>
+     </div>
+     <div class="ts loading segment" id="loading-form-popup" hidden="true">
+      <br>
+     </div>
+   </div>
+   <!-- <button class="ts positive button"><i class="checkmark icon"></i>Add</button> -->
+   </form>
+  </div>
+</div>
+</dialog>
 </div>
 {{end}}

@@ -8,7 +8,45 @@
 }
 
 .ts.center.inverted.header{
-    font-family: 'JelleeRoman';
+    font-family: 'JelleeBold';
     font-weight: normal;
     font-style: normal; 
 }
+
+#error-url-popup{
+    display: flex;
+    align-self: center;
+}
+
+/* FONT SETTINGS */
+@font-face {
+    font-family: 'JelleeBold';
+        src: url('/public/fonts/Jelle/JelleeBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+      }
+
+@font-face {
+    font-family: 'JelleeRoman';
+        src: url('/public/fonts/JelleBold/JelleeRoman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+      }
+
+ /* The following rules are deprecated. */ 
+
+@font-face {
+    font-family: 'Jellee';
+        src: url('/public/fonts/Jelle/JelleeBold.ttf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+      }
+
+
+
+@font-face {
+    font-family: 'Jellee';
+        src: url('/public/fonts/JelleBold/JelleeRoman.ttf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+      }

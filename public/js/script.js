@@ -5,16 +5,28 @@ async function hideAddTab() {
     ts('#addTabsForm').modal('hide');
 }
 
-async function test(url) {
-    x = await bindval(url)
-}
-
 async function bindval(url = '') {
-
-    datas = await postData('/getSiteData', { site: url }).then((datas) => {
-        console.log(datas)
-    });
-
+    if (isValidURLWithProtocol(url)) {
+        document.getElementById("label-url-popup").className = "ts positive label";
+        document.getElementById("input-url-popup").className = "ts basic labeled success input";
+        document.getElementById("error-url-popup").hidden = true;
+        document.getElementById("loading-form-popup").hidden = false;
+        datas = await postData('/getSiteData', { site: url }).then((datas) => {
+            document.getElementById("loading-form-popup").hidden = true;
+        });
+    } else {
+        if (isValidURLWoutProtocol(url)) {
+            console.log(url);
+            url = "https://" + url;
+            console.log(url);
+            bindval(url);
+            return;
+        }
+        document.getElementById("label-url-popup").className = "ts negative label";
+        document.getElementById("input-url-popup").className = "ts basic labeled error input";
+        document.getElementById("error-url-popup").hidden = false;
+        document.getElementById("error-url-popup").innerHTML = "Invalid URL";
+    };
 }
 
 async function postData(url = '', data = { '': `` }) {
@@ -29,10 +41,12 @@ async function postData(url = '', data = { '': `` }) {
     return await response.json();
 }
 
-function isValidUrl(url) {
-    var objRE = /(^https+:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i;
+function isValidURLWithProtocol(url) {
+    var objRE = /^(?:http(s)?:\/\/)+[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
     return objRE.test(url);
 }
-function haveProtocol(url) {
 
+function isValidURLWoutProtocol(url) {
+    var objRE = /^(?:http(s)+:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+    return objRE.test(url);
 }
