@@ -1,0 +1,28 @@
+{{ define "navbar" }}
+<!-- NavBar menu -->
+<div class="ts inverted info menu" style="margin-top: 0px;">
+ <a class="ts center item" href="/index">
+  <h3 class="ts center inverted header">SyncTabs</h3>
+ </a>
+ <!-- AddTab button -->
+ <a class="item" onclick="addTabForm()">
+  <i class="big plus icon"></i>
+ </a>
+ <!-- Refresh button -->
+ <a class="item" href="{{ .Url }}">
+  <i class="big refresh icon"></i>
+ </a>
+ <!-- Right Menu -->
+ <div class="right menu">
+  <!-- Settings button -->
+  <a class="item" style="border-left-color: rgb(108, 159, 178);
+  border-left-style: solid; border-left-width: 1px;">
+   <i class="big setting icon"></i>
+  </a>
+  <!-- to do Search -->
+  <a class="item">
+   <i class="big share icon"></i>
+  </a>
+ </div>
+</div>
+{{ end }}

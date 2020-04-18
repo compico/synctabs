@@ -1,0 +1,3 @@
+<form action='/addtab' method='post'>
+    <input type='text' name='urlform'>
+</form>

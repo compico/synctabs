@@ -1,0 +1,14 @@
+.ts.inverted.info.menu{
+    border-radius: 0px;
+}
+.item.setting{
+    border-left-color: #6c9fb2;
+    border-left-style: solid;
+    border-left-width: 1px;
+}
+
+.ts.center.inverted.header{
+    font-family: 'JelleeRoman';
+    font-weight: normal;
+    font-style: normal; 
+}
