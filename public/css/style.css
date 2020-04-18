@@ -12,6 +12,10 @@
     font-weight: normal;
     font-style: normal; 
 }
+ts.basic.labeled.error.input{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
 
 #error-url-popup{
     display: flex;

@@ -1,32 +1,24 @@
 {{ define "popup" }}
-<div class="ts modals inverted dimmer">
- <dialog id="addTabsForm" class="ts closable tiny modal">
-  <div class="ts segments">
-   <div class="ts segment" style="padding-bottom: 0px;padding-top: 0px;padding-right: 0px;">
-    <div class="ts icon secondary menu">
-     <h3 class="ts info header" style="margin-bottom: 0px;">Adding Tab</h3>
-     <a onclick="ts('#addTabsForm').modal('hide')" class="bordered right item"><i class="remove primary icon"></i></a>
-    </div>
-   </div>
-   <div class="ts segment">
-    <form action="/addtab" method="post" class="ts form">
-     <div class="field basic">
-      <div class="ts basic negative pointing below label" id="error-url-popup" hidden="true"></div>
-      <div class="ts labeled action input" id="input-url-popup" style="display: flex;">
-       <div class="ts basic label" id="label-url-popup">URL:</div>
-       <input id="inputurlform" type="text" placeholder="e.g. http://example.com/" oninput="bindval(this.value)"
-        style="border-bottom-left-radius: 0px;border-top-left-radius: 0px;">
-       <button class="ts button">Add</button>
-      </div>
-     </div>
-     <div class="ts loading segment" id="loading-form-popup" hidden="true">
-      <br>
-     </div>
-   </div>
-   <!-- <button class="ts positive button"><i class="checkmark icon"></i>Add</button> -->
-   </form>
+<div class="ts inverted modals dimmer">
+ <dialog id="addTabsForm" class="ts tiny closable modal" data-modal-initialized="true" open>
+  <div class="header" style="margin-bottom: 0px ; margin-top: 0px;">
+   <h3 class="ts info header">Adding Tab</h3>
   </div>
-</div>
-</dialog>
+  <div class="content">
+   <div class="ts labeled action input" id="input-url-popup" style="display: flex;">
+    <div class="ts basic label" id="label-url-popup">URL:</div>
+    <input id="inputurlform" type="text" placeholder="e.g. http://example.com/" oninput="bindval(this.value)"
+     style="border-radius: 0px; ">
+    <button class="ts disabled button" style="border-radius: 0px;" id="pushbtn-url-popup">Add</button>
+    <div class="ts basic negative label" id="error-url-popup" hidden="true"></div>
+   </div>
+   <div class="ts loading segment" id="loading-form-popup" hidden="true">
+    <br>
+   </div>
+  </div>
+  <div class="actions">
+   <button class="ts positive button"><i class="checkmark icon"></i>Add</button>
+  </div>
+ </dialog>
 </div>
 {{end}}

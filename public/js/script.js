@@ -11,6 +11,7 @@ async function bindval(url = '') {
         document.getElementById("input-url-popup").className = "ts basic labeled success input";
         document.getElementById("error-url-popup").hidden = true;
         document.getElementById("loading-form-popup").hidden = false;
+        document.getElementById("pushbtn-url-popup").disabled = false;
         datas = await postData('/getSiteData', { site: url }).then((datas) => {
             document.getElementById("loading-form-popup").hidden = true;
         });
