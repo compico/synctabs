@@ -29,8 +29,8 @@ func main() {
 }
 
 func indexHandle(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles(roothtmldir+"index.htgo", roothtmldir+"navbar.htgo",
-		roothtmldir+"header.htgo", roothtmldir+"footer.htgo", roothtmldir+"popup.htgo")
+	t, err := template.ParseFiles(roothtmldir+"index.html", roothtmldir+"navbar.html",
+		roothtmldir+"header.html", roothtmldir+"footer.html", roothtmldir+"popup.html")
 
 	if err != nil {
 		fmt.Fprintf(w, "Error Parse: %v", err)
