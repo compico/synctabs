@@ -12,16 +12,23 @@
     font-weight: normal;
     font-style: normal; 
 }
-ts.basic.labeled.error.input{
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
+.tooltip {
+    position: fixed;
+    padding: 10px 20px;
+    border: 1px solid #b3c9ce;
+    border-radius: 4px;
+    text-align: center;
+    color: #333;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+  }
 
-#error-url-popup{
-    display: flex;
-    align-self: center;
+#error-url-addtab{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
-
 /* FONT SETTINGS */
 @font-face {
     font-family: 'JelleeBold';

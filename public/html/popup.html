@@ -1,24 +1,24 @@
 {{ define "popup" }}
 <div class="ts inverted modals dimmer">
- <dialog id="addTabsForm" class="ts tiny closable modal" data-modal-initialized="true" open>
-  <div class="header" style="margin-bottom: 0px ; margin-top: 0px;">
-   <h3 class="ts info header">Adding Tab</h3>
-  </div>
-  <div class="content">
-   <div class="ts labeled action input" id="input-url-popup" style="display: flex;">
-    <div class="ts basic label" id="label-url-popup">URL:</div>
-    <input id="inputurlform" type="text" placeholder="e.g. http://example.com/" oninput="bindval(this.value)"
-     style="border-radius: 0px; ">
-    <button class="ts disabled button" style="border-radius: 0px;" id="pushbtn-url-popup">Add</button>
-    <div class="ts basic negative label" id="error-url-popup" hidden="true"></div>
-   </div>
-   <div class="ts loading segment" id="loading-form-popup" hidden="true">
-    <br>
-   </div>
-  </div>
-  <div class="actions">
-   <button class="ts positive button"><i class="checkmark icon"></i>Add</button>
-  </div>
- </dialog>
+    <dialog id="addTabsForm" class="ts tiny closable modal" data-modal-initialized="true" open>
+        <div class="header" style="margin-bottom: 0px ; margin-top: 0px;">
+            <h3 class="ts info header">Adding Tab</h3>
+        </div>
+        <div class="content">
+            <div class="ts labeled fluid action input" id="input-url-addtab" style="display: flex;">
+                <div class="ts basic label" id="label-url-addtab">URL:</div>
+                <input id="input-url-addtab-form" type="text" placeholder="e.g. http://example.com/"
+                    oninput="bindval(this.value)" style="border-radius: 0px;">
+                <button class="ts disabled button" style="border-radius: 0px;" id="pushbtn-url-addtab">Add</button>
+            </div>
+            <div class="ts secondary inverted negative message" id="error-url-addtab"></div>
+            <div class="ts loading segment" id="loading-form-addtab" hidden="true">
+                <br>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="ts positive button"><i class="checkmark icon"></i>Add</button>
+        </div>
+    </dialog>
 </div>
 {{end}}
