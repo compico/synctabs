@@ -87,6 +87,7 @@ function generate_inner(datas) {
     if (datas.description == "") datas.description = "Add description...";
     div_description = `<div class="ts basic label">Description:</div><div class="ts fluid input"><textarea type="text">` + datas.description + `</textarea></div>`;
     if (datas.icon != "") {
+        if (!isValidURLWoutProtocol(datas.icon)) { datas.icon = "https://" + datas.name + "/" + datas.icon; }
         div_description = `<div class="ts basic image label"><img src="` + datas.icon + `">Description:</div><div class="ts fluid input"><textarea type="text">` + datas.description + `</textarea></div>`;
     }
     if (datas.images.length != 0) {
