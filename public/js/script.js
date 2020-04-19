@@ -11,7 +11,6 @@ async function bindval(url = '') {
     let label_url_addtab = document.getElementById("label-url-addtab")
         , input_url_addtab = document.getElementById("input-url-addtab")
         , loading_form_addtab = document.getElementById("loading-form-addtab")
-        , pushbtn_url_addtab = document.getElementById("pushbtn-url-addtab")
         , error_url_addtab = document.getElementById("error-url-addtab")
         , x = isValidURLWithProtocol(url);
     if (x) {
@@ -19,7 +18,6 @@ async function bindval(url = '') {
         label_url_addtab.className = "ts positive label";
         input_url_addtab.className = "ts basic labeled fluid success input";
         loading_form_addtab.hidden = false;
-        pushbtn_url_addtab.disabled = false;
         error_url_addtab.innerHTML = "";
         datas = await postData('/getSiteData', { site: url }).then((datas) => {
             console.log(datas);
@@ -91,7 +89,10 @@ function generate_inner(datas) {
     if (datas.icon != "") {
         div_description = `<div class="ts basic image label"><img src="` + datas.icon + `">Description:</div><div class="ts fluid input"><textarea type="text">` + datas.description + `</textarea></div>`;
     }
-    template = div_title + newline + div_url + newline + div_description + newline;
+    if (datas.images.length != 0) {
+        div_image = `<div class="ts compact segment"><img class="ts small image" src="` + datas.images[0] + `"></div>` + newline;
+    };
+    template = div_title + newline + div_url + newline + div_description + newline + div_image;
     return template;
 }
 ;
