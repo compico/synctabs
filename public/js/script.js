@@ -83,12 +83,15 @@ function isValidURLWoutProtocol(url) {
 function generate_inner(datas) {
     let template;
     newline = `<br><br>`
-    div_horisontal_title = `<div class="ts labeled fluid input"><div class="ts basic label">Title:</div> <input type="text" value="` + datas.title + `"></div>`;
+    div_title = `<div class="ts labeled fluid input"><div class="ts basic label">Title:</div> <input type="text" value="` + datas.title + `"></div>`;
     if (datas.url == "") datas.url = "Add URL..."
-    div_horisontal_url = `<div class="ts labeled fluid input"><div class="ts basic label">URL:</div> <input type="text" value="` + datas.url + `"></div>`;
+    div_url = `<div class="ts labeled fluid input"><div class="ts basic label">URL:</div> <input type="text" value="` + datas.url + `"></div>`;
     if (datas.description == "") datas.description = "Add description...";
-    div_horisontal_description = `<div class="ts basic label">Description:</div><div class="ts fluid input"><textarea type="text">` + datas.description + `</textarea></div>`;
-    template = div_horisontal_title + newline + div_horisontal_url + newline + div_horisontal_description;
+    div_description = `<div class="ts basic label">Description:</div><div class="ts fluid input"><textarea type="text">` + datas.description + `</textarea></div>`;
+    if (datas.icon != "") {
+        div_description = `<div class="ts basic image label"><img src="` + datas.icon + `">Description:</div><div class="ts fluid input"><textarea type="text">` + datas.description + `</textarea></div>`;
+    }
+    template = div_title + newline + div_url + newline + div_description + newline;
     return template;
 }
 ;
