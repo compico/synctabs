@@ -1,6 +1,9 @@
 package booklink
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"io/ioutil"
+)
 
 type (
 	SiteData struct {
@@ -14,9 +17,21 @@ type (
 )
 
 func (sd *SiteData) ToJson() ([]byte, error) {
-	data, err := json.MarshalIndent(sd, "", " ")
+	data, err := json.Marshal(sd)
 	if err != nil {
 		return nil, err
 	}
 	return data, nil
+}
+
+func (sd *SiteData) FromJson(path string) error {
+	bytes, err := ioutil.ReadFile(path)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(bytes, sd)
+	if err != nil {
+		return err
+	}
+	return nil
 }

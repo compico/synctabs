@@ -6,18 +6,10 @@ import (
 	bl "github.com/compico/synctabs/booklink"
 )
 
-func TestToJson(t *testing.T) {
-	data := bl.SiteData{
-		Icon:        "Test",
-		Name:        "Test",
-		Title:       "Test",
-		Description: "Test",
-		Images:      []string{"Test","Test"},
-		Url:         "Test",
-	}
-	r, err := bl.ToJson(data)
+func TestFromJson(t *testing.T) {
+	var sd bl.SiteData
+	err := sd.FromJson("data_for_tests/sitedata.json")
 	if err != nil {
-		t.Errorf("Marshall error: %v\n", err.Error())
+		t.Errorf("Unmarshel error : %v", err.Error())
 	}
-	t.Log(r)
 }
