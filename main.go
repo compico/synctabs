@@ -9,19 +9,18 @@ import (
 )
 
 var (
-	roothtmldir string = "./public/html/"
+	roothtmldir string = "public/html/"
 )
 
 func main() {
 	s := &http.Server{
-		Addr:         ":8000",
+		Addr:         ":8080",
 		ReadTimeout:  15 * time.Second,
 		WriteTimeout: 15 * time.Second,
 	}
 	http.HandleFunc("/", indexHandle)
-	http.HandleFunc("/getSiteData", getSiteDataHandel)
+	http.HandleFunc("/getSiteData", getSiteDataHandle)
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
-
 	err := s.ListenAndServe()
 	if err != nil {
 		panic(err)
@@ -29,14 +28,19 @@ func main() {
 }
 
 func indexHandle(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles(roothtmldir+"index.html", roothtmldir+"navbar.html",
-		roothtmldir+"header.html", roothtmldir+"footer.html", roothtmldir+"popup.html")
+	t, err := template.ParseFiles(
+		roothtmldir+"index.html",
+		roothtmldir+"navbar.html",
+		roothtmldir+"header.html",
+		roothtmldir+"footer.html",
+		roothtmldir+"popup.html",
+	)
 
 	if err != nil {
 		fmt.Fprintf(w, "Error Parse: %v", err)
 	}
 
-	hdata := getheaderdata("Index - SyncTabs")
+	hdata := "Index - SyncTabs"
 	ndata := getNavbarData(r.URL.Path)
 
 	err = t.ExecuteTemplate(w, "header", hdata)
@@ -61,31 +65,32 @@ func indexHandle(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func getSiteDataHandel(w http.ResponseWriter, r *http.Request) {
+func getSiteDataHandle(w http.ResponseWriter, r *http.Request) {
 
 	var pf = struct {
 		Site string `json:"site"`
 	}{}
 
+	w.Header().Add("Content-Type", "application/json")
 	decoder := json.NewDecoder(r.Body)
 
 	err := decoder.Decode(&pf)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("ERROR №1: %v", err)
+		r.Response.Status = http.StatusText(500)
+		fmt.Fprintf(w, "{ \"error\":\""+err.Error()+"\"}")
 	}
 
 	url := pf.Site
 
-	w.Header().Add("Content-Type", "application/json")
-
 	res, err := getSiteData(url)
 	if err != nil {
-		fmt.Printf("GetDataSite: %v", err)
+		fmt.Printf("ERROR №2: %v", err)
 	}
 
 	jsondata, err := res.toJSON()
 	if err != nil {
-		fmt.Fprintf(w, "ToJson: %v", err)
+		fmt.Fprintf(w, "ERROR №3: %v", err)
 	}
 
 	fmt.Fprint(w, jsondata)
