@@ -16,6 +16,10 @@ type (
 	}
 )
 
+func newSiteData() *SiteData {
+	return new(SiteData)
+}
+
 func (sd *SiteData) ToJson() ([]byte, error) {
 	data, err := json.Marshal(sd)
 	if err != nil {

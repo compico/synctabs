@@ -17,22 +17,21 @@ type SiteData struct {
 }
 
 func getSiteData(url string) (*SiteData, error) {
-		data := new(SiteData)
-		s, err := goscraper.Scrape(url, 5)
-		if err != nil {
-			data.Error = err.Error()
-			return data, err
-		}
-		data.Icon = s.Preview.Icon
-		data.Name = s.Preview.Name
-		data.Title = s.Preview.Title
-		data.Description = s.Preview.Description
-		data.Url = s.Preview.Link
-
-		if len(s.Preview.Images) > 0 {
-			data.Images = s.Preview.Images
-		}
-		return data, nil
+	data := new(SiteData)
+	s, err := goscraper.Scrape(url, 5)
+	if err != nil {
+		data.Error = err.Error()
+		return data, err
+	}
+	data.Icon = s.Preview.Icon
+	data.Name = s.Preview.Name
+	data.Title = s.Preview.Title
+	data.Description = s.Preview.Description
+	data.Url = s.Preview.Link
+	if len(s.Preview.Images) > 0 {
+		data.Images = s.Preview.Images
+	}
+	return data, nil
 }
 
 func (sd *SiteData) toJSON() (string, error) {

@@ -41,7 +41,6 @@ func indexHandle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	hdata := "Index - SyncTabs"
-	ndata := getNavbarData(r.URL.Path)
 
 	err = t.ExecuteTemplate(w, "header", hdata)
 	if err != nil {
@@ -51,7 +50,7 @@ func indexHandle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintf(w, "Error Popup: %v", err)
 	}
-	err = t.ExecuteTemplate(w, "navbar", ndata)
+	err = t.ExecuteTemplate(w, "navbar", "")
 	if err != nil {
 		fmt.Fprintf(w, "Error Navbar: %v", err)
 	}
